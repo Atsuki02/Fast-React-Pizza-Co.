@@ -5,7 +5,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
   return (
-    <header className="lg:text:lg flex h-20 items-center justify-between bg-red-800 p-8 text-xl font-bold text-white lg:px-12 ">
+    <header className="lg:text:lg sticky left-0 top-0 flex h-20 items-center justify-between bg-red-800 p-8 text-xl font-bold text-white lg:px-12 ">
       <Link to="/">
         <h1 className="">Hokuden</h1>
       </Link>

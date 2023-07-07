@@ -13,6 +13,7 @@ export default {
       },
       height: {
         screen: '100dvh',
+        partscreen: 'calc(100dvh - 80px)',
       },
     },
   },

@@ -9,7 +9,7 @@ function CartItem({ name, price, quantity, menuId, totalPrice }) {
       </p>
       <div className="flex items-center justify-between lg:gap-4 ">
         <p className="text-lg">{formatCurrency(totalPrice)}</p>
-        <Button>Delete</Button>
+        <Button type="small">Delete</Button>
       </div>
     </li>
   );

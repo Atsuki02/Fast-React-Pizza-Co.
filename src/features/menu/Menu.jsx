@@ -6,7 +6,7 @@ function Menu() {
   const menu = useLoaderData();
   return (
     <>
-      <select className="h-14 w-full bg-stone-900 text-center font-medium text-white outline-stone-100">
+      <select className="sticky top-20 h-14 w-full bg-stone-900 text-center font-medium text-white outline-stone-100">
         <option value="" className="">
           Main
         </option>

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import Button from './Button';
 
 function Home() {
@@ -7,9 +6,10 @@ function Home() {
       <h1 className="pb-8 text-base font-semibold text-white lg:pb-14 lg:text-3xl">
         Welcome to Yakiniku Hokuden!!!
       </h1>
-      <Link to="/menu">
-        <Button>Let's order</Button>
-      </Link>
+
+      <Button to="/menu" type="primary">
+        Let's order
+      </Button>
     </div>
   );
 }

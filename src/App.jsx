@@ -4,7 +4,7 @@ import Menu, { loader as menuLoader } from './features/menu/Menu';
 import Cart, { loader as cartLoader } from './features/cart/Cart';
 import Order from './features/order/Order';
 import Check from './features/check/Check';
-import CreateOrder from './features/order/CreateOrder';
+import CreatedOrder from './features/order/CreatedOrder';
 import AppLayout from './ui/AppLayout';
 import Error from './ui/Error';
 
@@ -25,8 +25,8 @@ const router = createBrowserRouter([
         loader: cartLoader,
       },
       {
-        path: '/order/new',
-        element: <CreateOrder />,
+        path: '/order/created',
+        element: <CreatedOrder />,
       },
       {
         path: '/order/:orderId',
