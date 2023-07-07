@@ -1,68 +1,49 @@
-import { useDispatch, useSelector } from "react-redux";
-import Button from "../../ui/Button";
-import { formatCurrency } from "../../utils/helpers";
-import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
-import DeleteItem from "../cart/DeleteItem";
-import UpdateItemQuantity from "../cart/UpdateItemQuantity";
+import { useState } from 'react';
 
-function MenuItem({ pizza }) {
-  const dispatch = useDispatch();
-
-  const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
-  const currentQuantity = useSelector(getCurrentQuantityById(id));
-  const isInCart = currentQuantity > 0;
-
-  function handleAddToCart() {
-    const newItem = {
-      pizzaId: id,
-      name,
-      quantity: 1,
-      unitPrice,
-      totalPrice: unitPrice * 1,
-    };
-    dispatch(addItem(newItem));
-  }
+function MenuItem({ item, i }) {
+  const [soldOut, setSoldOut] = useState(false);
+  const [count, setCount] = useState(0);
 
   return (
-    <li className="flex gap-4 py-2">
-      <img
-        src={imageUrl}
-        alt={name}
-        className={`h-24 ${soldOut ? "opacity-70 grayscale" : ""}`}
-      />
-      <div className="flex grow flex-col pt-0.5">
-        <p className="font-medium">{name}</p>
-        <p className="text-sm capitalize italic text-stone-500">
-          {ingredients.join(", ")}
-        </p>
-        <div className="mt-auto flex items-center justify-between">
+    <li
+      key={i}
+      className="flex flex-col gap-4 py-2 lg:flex-row lg:gap-8 lg:py-8"
+    >
+      <img src={item.img} alt="" className="lg:h-68 lg:w-80" />
+      <div className="flex grow justify-between">
+        <div className="m-5 flex flex-col justify-around lg:items-start lg:justify-center">
+          <p>{item.name}</p>
           {!soldOut ? (
-            <p className="text-sm">{formatCurrency(unitPrice)}</p>
+            <p>{item.price} &yen;</p>
           ) : (
             <p className="text-sm font-medium uppercase text-stone-500">
               Sold out
             </p>
           )}
-
-          {isInCart && (
-            <div className="flex items-center gap-3 sm:gap-8">
-              <UpdateItemQuantity
-                pizzaId={id}
-                currentQuantity={currentQuantity}
-              ></UpdateItemQuantity>
-              <DeleteItem pizzaId={id}></DeleteItem>
-            </div>
-          )}
-
-          {!soldOut && !isInCart && (
-            <Button type="small" onClick={handleAddToCart}>
-              Add to cart
-            </Button>
-          )}
+        </div>
+        <div className=" mr-10 flex flex-row items-center justify-end space-x-4 text-lg">
+          <button
+            onClick={() => (count > 0 ? setCount((cur) => cur - 1) : null)}
+            className="h-8 w-8 rounded-full bg-white text-black"
+          >
+            -
+          </button>
+          <span>{count}</span>
+          <button
+            onClick={() => setCount((cur) => cur + 1)}
+            className="h-8 w-8 rounded-full bg-white text-black"
+          >
+            +
+          </button>
         </div>
       </div>
     </li>
   );
+}
+{
+  /* <div className="m-5 hidden items-center lg:mr-4 lg:flex">
+  <Button>Add to cart</Button>
+</div> */
 }
 
 export default MenuItem;

@@ -1,16 +1,25 @@
+import { getMenu } from '../../Services/apiMenu';
 import { useLoaderData } from 'react-router-dom';
-import { getMenu } from '../../services/apiRestaurant';
 import MenuItem from './MenuItem';
 
 function Menu() {
   const menu = useLoaderData();
-
   return (
-    <ul className="divide-y divide-stone-200 px-2">
-      {menu.map((pizza) => (
-        <MenuItem pizza={pizza} key={pizza.id} />
-      ))}
-    </ul>
+    <>
+      <select className="h-14 w-full bg-stone-900 text-center font-medium text-white outline-stone-100">
+        <option value="" className="">
+          Main
+        </option>
+        <option value="">Side</option>
+        <option value="">Drink</option>
+        <option value="">Dessert</option>
+      </select>
+      <ul className="divide-y divide-stone-200 bg-black text-white  ">
+        {menu.map((item, i) => (
+          <MenuItem item={item} i={i} />
+        ))}
+      </ul>
+    </>
   );
 }
 
